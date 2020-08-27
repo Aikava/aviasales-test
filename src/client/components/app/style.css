@@ -1,0 +1,27 @@
+:global(#app) {
+    width: 100%;
+    height: 100%;
+    background: no-repeat url("../../assets/back.png");
+    background-size: cover;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "SFUI-regular";
+    src: url("../../assets/SFUIText-Regular.ttf");
+}
+
+@font-face {
+    font-family: "SFUI-semibold";
+    src: url("../../assets/SFUIText-Semibold.ttf");
+}
+
+@font-face {
+    font-family: "Shnobel";
+    src: url("../../assets/Shnobel-Regular.woff");
+}

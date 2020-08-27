@@ -1,0 +1,9 @@
+.input {
+    display: block;
+    border-radius: 50px;
+    font-family: "SFUI-regular";
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    width: 100%;
+}

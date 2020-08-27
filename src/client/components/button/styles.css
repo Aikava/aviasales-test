@@ -1,0 +1,15 @@
+.button {
+    color: white;
+    border: 2px solid white;
+    border-radius: 50px;
+    width: 230px;
+    height: 70px;
+    cursor: pointer;
+    font-size: 50px;
+    font-family: Shnobel;
+    background: rgba(0 ,0, 0, 0);
+}
+
+.button-wrapper {
+    text-align: center;
+}
