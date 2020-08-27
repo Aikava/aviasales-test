@@ -14,13 +14,20 @@ async function getUser(id) {
 }
 
 async function create() {
-    await client.query(`
+    const result = await client.query(`
     INSERT INTO users(email, share)
-    VALUES(null, false)`);
+    VALUES(null, false) RETURNING id`);
+
+    return result.rows[0];
 }
 
 async function update(id, field, value) {
-    await client.query(`UPDATE users SET ${field}=${value} WHERE id=${id})`);
+    let insertingValue = value;
+
+    if (typeof value === "string") {
+        insertingValue = `'${value}'`;
+    }
+    await client.query(`UPDATE users SET ${field}=${insertingValue} WHERE id=${id}  `);
 }
 
 module.exports = {

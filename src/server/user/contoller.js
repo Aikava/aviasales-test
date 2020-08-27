@@ -13,13 +13,12 @@ async function getUser(id) {
 }
 
 async function create() {
-    await model.create();
+    return await model.create();
 }
 
 async function update(id, fields) {
     try {
-        for (const [key, value] of fields.entries) {
-
+        for (const [key, value] of Object.entries(fields)) {
             await model.update(id, key, value);
         }
 

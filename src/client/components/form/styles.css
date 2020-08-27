@@ -40,7 +40,7 @@
     margin-bottom: 20px;
 }
 
-.form li:before {
+.form ol fieldset:before {
     display: inline-block;
     width: 64px;
     left: -20px;
@@ -49,6 +49,29 @@
     font-size: 44px;
     content: counter(item) ".";
     position: absolute;
+}
+
+.form ol fieldset:disabled:before {
+    visibility: hidden;
+}
+
+.form fieldset:disabled div {
+    color: rgba(255, 255, 255, .5);
+}
+
+.form fieldset:disabled input{
+    background: rgba(255, 255, 255, .5);
+}
+
+.form fieldset:disabled input[type="checkbox"] {
+    border: none;
+    visibility: visible;
+    position: absolute;
+    left: -20px;
+}
+
+.form fieldset input[type="checkbox"] {
+    visibility: hidden;
 }
 
 .item {

@@ -2,29 +2,31 @@ import React from "react";
 
 import styles from "./styles.css";
 import { Button } from "../button";
-import { Input } from "../input";
 import { ShareBlock } from "../share";
+import { Input } from "../input";
 
-export const Form = ({ onFormSubmit }) => {
+export const Form = ({ onFormSubmit, email, share }) => {
     return (
         <form className={ styles.form } onSubmit={ onFormSubmit}>
             <fieldset>
                 <legend className={ styles.legend}>Чтобы выиграть путешествие </legend>
                 <ol>
                     <li>
-                        <fieldset name="share">
+                        <fieldset name="share" disabled={share}>
+                            <input type="checkbox" checked={ email }></input>
                             <div className={styles.item}>
                                 Поделись с друзьями:
                             </div>
-                            <ShareBlock />
+                            <ShareBlock share={share}/>
                         </fieldset>
                     </li>
                     <li>
-                        <fieldset name="email">
+                        <fieldset name="email" disabled={Boolean(email)}>
+                            <input type="checkbox" checked={ email }></input>
                             <div className={styles.item}>
                                 Оставь почту:
                             </div>
-                            <Input />
+                            <Input value={ email }/>
                         </fieldset>
                     </li>
                 </ol>

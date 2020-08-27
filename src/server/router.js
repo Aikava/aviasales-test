@@ -5,42 +5,41 @@ const userRouter = Router();
 
 userRouter.get("/users/create", async function (res, res, next) {
     try {
-        await userController.create();
+        const {id: userId}  = await userController.create();
 
-        res.sendStatus(200);
+        res.cookie("user_id", userId)
+            .sendStatus(200);
     } catch (err) {
         res.sendStatus(500);
     }
 
     next();
 });
-userRouter.route("/users/:id")
-    .get(async function (req, res, next) {
-        const { id } = req.params;
+userRouter.get("/users/:id(\\d+)/", async function (req, res, next) {
+    const {id} = req.params;
 
-        try {
-            const user = await userController.getUser(id);
+    try {
+        const user = await userController.getUser(id);
 
-            res.send(JSON.stringify(user));
-        } catch (err) {
-            res.sendStatus(500);
-        }
+        res.send(JSON.stringify(user));
+    } catch (err) {
+        res.sendStatus(500);
+    }
 
-        next();
-    })
-    .post(async function (req, res, next)  {
-        const { id } = req.params;
+    next();
+});
+userRouter.post("/users/:id(\\d+)/", async function (req, res, next) {
+    const { id } = req.params;
 
-        try {
-            const fields = req.body;
-            console.log(fields);
+    try {
+        const fields = req.body;
 
-            await userController.update(id, fields);
-            res.sendStatus(200);
-        } catch (error) {
-            res.sendStatus(500);
-        }
+        await userController.update(id, fields);
+        res.sendStatus(200);
+    } catch (error) {
+        res.sendStatus(500);
+    }
 
-        next();
-    });
+    next();
+});
 module.exports = userRouter;

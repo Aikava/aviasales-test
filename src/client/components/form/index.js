@@ -1,6 +1,8 @@
 import { Form as Component } from "./form";
+import {connect} from "react-redux";
+import {pushUserData} from "../../applicationReducer";
 
-function onFormSubmit(event) {
+function submitForm(dispatch, event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -10,15 +12,17 @@ function onFormSubmit(event) {
         jsonFormData[key] = value;
     }
 
-    fetch("/users/add", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(jsonFormData)
-    });
+    dispatch(pushUserData(jsonFormData));
 }
 
-export const Form = () => {
-  return Component({ onFormSubmit });
+const mapStateToProps = ({ email, share }) => {
+    return { email, share }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      onFormSubmit: e => submitForm(dispatch, e)
+  }
 };
+
+export const Form = connect(mapStateToProps, mapDispatchToProps)(Component);

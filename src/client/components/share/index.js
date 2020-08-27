@@ -1,6 +1,8 @@
 import { ShareBlock as Component } from "./share";
+import {pushUserData} from "../../applicationReducer";
+import {connect} from "react-redux";
 
-function shareClickHandler(event) {
+function shareClickHandler(dispatch, event) {
     event.preventDefault();
 
     const { href } = event.target;
@@ -9,10 +11,10 @@ function shareClickHandler(event) {
         return;
     }
 
-    openWindow(href);
+    openWindow(dispatch, href);
 }
 
-function openWindow(href, width = 500, height = 300) {
+function openWindow(dispatch, href, width = 500, height = 300) {
     const left = (screen.width / 2) - (width / 2);
     const top = (screen.height / 2) - (height / 2);
 
@@ -22,18 +24,21 @@ function openWindow(href, width = 500, height = 300) {
         `menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=${width},height=${height},top=${top},left=${left}`
     );
 
-    captureCloseWindow(openedWindow);
+    captureCloseWindow(dispatch, openedWindow);
 }
 
-function captureCloseWindow(window) {
+function captureCloseWindow(dispatch, window) {
     const interval = setInterval(()=> {
         if (window.closed) {
             clearInterval(interval);
-            console.log("closed");
+
+            dispatch(pushUserData({ share: true }));
         }
     }, 100);
 }
-export const ShareBlock = ({ ...props }) => {
 
-    return Component({ ...props, onShareClick:  shareClickHandler });
-}
+
+const mapDispatchToProps = dispatch => ({
+    onShareClick: (event) => shareClickHandler(dispatch, event)
+});
+export const ShareBlock = connect(null, mapDispatchToProps)(Component);
