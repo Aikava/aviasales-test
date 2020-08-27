@@ -3,13 +3,13 @@ const initialState = {
     email: "",
     share: false,
     inputValue: "",
+    loaded: false,
 };
 
-export const UPDATE_SHARE = "UPDATE_SHARE";
 export const UPDATE_EMAIL = "UPDATE_EMAIL";
 export const UPDATE_USER = "UPDATE_USER";
-export const PULL_USER_DATA = "PULL_USER_DATA";
 export const USER_CREATED = "USER_CREATED";
+const DATA_LOADED = "DATA_LOADED";
 
 function getCookie() {
     const cookie = document.cookie;
@@ -29,6 +29,7 @@ export function pullUserData() {
     const cookie = getCookie();
 
     if (!cookie.user_id) {
+
         return createUser();
     }
 
@@ -36,6 +37,7 @@ export function pullUserData() {
         const request = await fetch(`/users/${cookie.user_id}`);
         const result = await request.json();
 
+        dispatch(dataLoaded(result));
         dispatch(updateUser(result));
     };
 }
@@ -43,7 +45,8 @@ export function pullUserData() {
 export function createUser() {
     return async (dispatch) => {
         await fetch("/users/create");
-        
+
+        dispatch(dataLoaded({}))
         dispatch(userCreated());
     }
 }
@@ -72,9 +75,14 @@ function userCreated() {
     return { type: USER_CREATED };
 }
 
+function dataLoaded(data) {
+    return { type: DATA_LOADED, payload: { data } };
+}
+
 export function updateLocalEmail(data) {
     return { type:  UPDATE_EMAIL, payload: data };
 }
+
 
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -86,11 +94,18 @@ export const reducer = (state, action) => {
             };
         case UPDATE_EMAIL:
             const { email } = action.payload;
-            console.log(email);
             return  {
                 ...state,
                 inputValue: email
             };
+        case DATA_LOADED: {
+            const {data} = action.payload;
+            return {
+                ...state,
+                ...data,
+                loaded: true,
+            }
+        }
         default:
             return initialState;
     }

@@ -27,6 +27,7 @@ async function update(id, field, value) {
     if (typeof value === "string") {
         insertingValue = `'${value}'`;
     }
+
     await client.query(`UPDATE users SET ${field}=${insertingValue} WHERE id=${id}  `);
 }
 

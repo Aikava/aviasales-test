@@ -5,7 +5,7 @@ const userRouter = require("./router");
 const app = express();
 
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname, "./public")));
 app.use(userRouter);
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 app.listen(8081);

@@ -26,3 +26,10 @@
     padding-left: 0;
     width: 100%;
 }
+
+@media screen and (max-width: 719px){
+    .share-block {
+        padding: 0 10px;
+        width: 90%;
+    }
+}

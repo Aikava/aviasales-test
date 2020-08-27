@@ -7,7 +7,8 @@ userRouter.get("/users/create", async function (res, res, next) {
     try {
         const {id: userId}  = await userController.create();
 
-        res.cookie("user_id", userId)
+        res
+            .cookie("user_id", userId)
             .sendStatus(200);
     } catch (err) {
         res.sendStatus(500);
@@ -21,7 +22,9 @@ userRouter.get("/users/:id(\\d+)/", async function (req, res, next) {
     try {
         const user = await userController.getUser(id);
 
-        res.send(JSON.stringify(user));
+        res
+            .cookie("user_id", user.id)
+            .send(JSON.stringify(user));
     } catch (err) {
         res.sendStatus(500);
     }

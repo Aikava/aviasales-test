@@ -2,8 +2,8 @@ import { App as Component } from "./app";
 import {connect} from "react-redux";
 import {pullUserData} from "../../applicationReducer";
 
-const mapStateToProps = ({ email, share }) => {
-    return { email, share };
+const mapStateToProps = ({ email, share, loaded }) => {
+    return { email, share, isLoaded: loaded };
 }
 
 const mapDispatchToProps = dispatch => ({

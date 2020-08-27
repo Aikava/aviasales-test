@@ -4,9 +4,7 @@ async function getUser(id) {
     const user = await model.getUser(id);
 
     if (!user.rowCount) {
-        await model.create();
-
-        return;
+        return await model.create();
     }
 
     return user.rows[0];

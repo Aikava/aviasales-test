@@ -21,7 +21,8 @@ const mapStateToProps = ({ email, share, inputValue }) => {
     return {
         email,
         share,
-        submitButtonDisabled: !(share && (inputValue || email))
+        inputValue,
+        submitButtonDisabled: !inputValue
     };
 }
 

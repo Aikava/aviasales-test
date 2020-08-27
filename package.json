@@ -5,7 +5,9 @@
   "main": "src/server/index.js",
   "scripts": {
     "server:dev": "nodemon src/server/index.js",
-    "client:dev": "webpack --watch --progress --config src/client/webpack.config.js"
+    "client:dev": "webpack --mode=development  --watch --progress --config src/client/webpack.config.js",
+    "build": "webpack --mode=production  --config src/client/webpack.config.js",
+    "server:run": "node src/server/index.js"
   },
   "author": "Rykov Dmitriy",
   "license": "ISC",
