@@ -15,8 +15,14 @@ function submitForm(dispatch, event) {
     dispatch(pushUserData(jsonFormData));
 }
 
-const mapStateToProps = ({ email, share }) => {
-    return { email, share }
+
+
+const mapStateToProps = ({ email, share, inputValue }) => {
+    return {
+        email,
+        share,
+        submitButtonDisabled: !(share && (inputValue || email))
+    };
 }
 
 const mapDispatchToProps = dispatch => {

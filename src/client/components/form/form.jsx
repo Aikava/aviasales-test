@@ -5,7 +5,7 @@ import { Button } from "../button";
 import { ShareBlock } from "../share";
 import { Input } from "../input";
 
-export const Form = ({ onFormSubmit, email, share }) => {
+export const Form = ({ onFormSubmit, email, share, submitButtonDisabled }) => {
     return (
         <form className={ styles.form } onSubmit={ onFormSubmit}>
             <fieldset>
@@ -13,7 +13,7 @@ export const Form = ({ onFormSubmit, email, share }) => {
                 <ol>
                     <li>
                         <fieldset name="share" disabled={share}>
-                            <input type="checkbox" checked={ email }></input>
+                            <input type="checkbox" checked={ share }></input>
                             <div className={styles.item}>
                                 Поделись с друзьями:
                             </div>
@@ -30,7 +30,7 @@ export const Form = ({ onFormSubmit, email, share }) => {
                         </fieldset>
                     </li>
                 </ol>
-                <Button type="submit">Oтправить</Button>
+                <Button disabled={ submitButtonDisabled } type="submit">Oтправить</Button>
             </fieldset>
         </form>
     );

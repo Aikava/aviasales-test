@@ -1,7 +1,8 @@
 const initialState = {
     id: null,
     email: "",
-    share: false
+    share: false,
+    inputValue: "",
 };
 
 export const UPDATE_SHARE = "UPDATE_SHARE";
@@ -12,7 +13,7 @@ export const USER_CREATED = "USER_CREATED";
 
 function getCookie() {
     const cookie = document.cookie;
-    const splittedCookie = cookie.split(",");
+    const splittedCookie = cookie.split("; ");
     const result = {};
 
     for (const keyValue of splittedCookie) {
@@ -71,27 +72,24 @@ function userCreated() {
     return { type: USER_CREATED };
 }
 
+export function updateLocalEmail(data) {
+    return { type:  UPDATE_EMAIL, payload: data };
+}
+
 export const reducer = (state, action) => {
     switch (action.type) {
-        case UPDATE_SHARE:
-            const { share } = action.payload;
-
-            return  {
-                ...state,
-                share,
-            };
-        case UPDATE_EMAIL:
-            const { email } = action.payload;
-
-            return  {
-                ...state,
-                email,
-            };
         case UPDATE_USER:
             const { data } = action.payload;
             return {
                 ...state,
-                ...data
+                ...data,
+            };
+        case UPDATE_EMAIL:
+            const { email } = action.payload;
+            console.log(email);
+            return  {
+                ...state,
+                inputValue: email
             };
         default:
             return initialState;

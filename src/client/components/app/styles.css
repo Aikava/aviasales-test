@@ -1,8 +1,8 @@
 :global(#app) {
     width: 100%;
     height: 100%;
-    background: no-repeat url("../../assets/back.png");
-    background-size: cover;
+    background: no-repeat url("../../assets/back.png") #CD718E;
+    background-size: contain;
 }
 
 html,

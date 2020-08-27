@@ -2,11 +2,12 @@
     width: 315px;
     border: none;
     position: relative;
-    margin-bottom: 40px;
+    padding: 0;
 }
 
 .form fieldset {
     border: none;
+    padding: 0;
 }
 
 .form {
@@ -14,13 +15,14 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    margin: 0;
 }
 
 .legend {
     color: white;
     font-family: "Shnobel";
     font-size: 50px;
-    width: 315px;
+    width: 80%;
     text-align: center;
     margin: 0 auto;
 }
@@ -40,10 +42,11 @@
     margin-bottom: 20px;
 }
 
-.form ol fieldset:before {
+.item:before {
     display: inline-block;
     width: 64px;
-    left: -20px;
+    left: -44px;
+    top: -10px;
     color: white;
     font-family: "Shnobel";
     font-size: 44px;
@@ -51,7 +54,7 @@
     position: absolute;
 }
 
-.form ol fieldset:disabled:before {
+fieldset:disabled .item:before {
     visibility: hidden;
 }
 
@@ -67,7 +70,7 @@
     border: none;
     visibility: visible;
     position: absolute;
-    left: -20px;
+    left: -34px;
 }
 
 .form fieldset input[type="checkbox"] {
@@ -75,5 +78,37 @@
 }
 
 .item {
+    position: relative;
     margin-bottom: 14px;
+}
+
+@media screen and (max-width: 719px) {
+    .legend {
+        font-size: 27px;
+        width: 100%;
+    }
+
+    .item:before {
+        color: white;
+        font-family: "SFUI-regular";
+        content: counter(item) ".";
+        width: auto;
+        left: 0;
+        font-size: 18px;
+        margin-right: 4px;
+        position: relative;
+        top: 0;
+    }
+
+    .item {
+        text-align: center;
+    }
+
+
+    .form fieldset:disabled input[type="checkbox"] {
+        border: none;
+        visibility: visible;
+        position: absolute;
+        left: 20px;
+    }
 }

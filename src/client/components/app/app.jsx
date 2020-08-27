@@ -2,9 +2,20 @@ import React, { useEffect } from "react";
 import { Logo } from "../logo";
 import { Form } from "../form";
 
-import "./style.css";
+import "./styles.css";
+import {Final} from "../final/final";
 
-export const App = ({ initUser}) => {
+const Screen = ({ isLoaded = true, share, email }) => {
+    if (isLoaded && share && email) {
+        return  <Final />;
+    } else if (isLoaded) {
+        return <Form />;
+    }
+
+    return null
+}
+
+export const App = ({ initUser, share, email, isLoaded }) => {
     useEffect(() => {
         initUser();
     });
@@ -12,7 +23,7 @@ export const App = ({ initUser}) => {
     return (
         <>
             <Logo top={30} left={30} />
-            <Form />
+            <Screen share={ share } email={email}/>
         </>
     );
 }

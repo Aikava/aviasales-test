@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     entry: "./src/client/index.jsx",
     output: {
-        path: path.resolve(__dirname, "public"),
+        path: path.resolve(__dirname, "../server/public"),
     },
     resolve: {
         extensions: [".js", ".jsx"]
@@ -43,7 +43,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            templateContent: `<div id="app"></div>`
+            templateContent: `<div id="app"></div>`,
+            meta: {
+                viewport: "width=device-width",
+            }
         })
     ]
 }

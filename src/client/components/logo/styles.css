@@ -5,3 +5,11 @@
     position: absolute;
     cursor: pointer;
 }
+
+@media screen and (max-width: 719px) {
+    .logo {
+        width: 10vw;
+        height: 10vw;
+        background: no-repeat url("../../assets/min-logo.svg");
+    }
+}
