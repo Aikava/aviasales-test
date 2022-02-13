@@ -5,7 +5,7 @@
   "main": "src/server/index.js",
   "scripts": {
     "server:dev": "nodemon src/server/index.js",
-    "client:dev": "webpack --mode=development  --watch --progress --config src/client/webpack.config.js",
+    "client:dev": "NODE_ENV=development webpack serve --config src/client/webpack.config.js",
     "build": "webpack --mode=production  --config src/client/webpack.config.js",
     "server:run": "node src/server/index.js"
   },
@@ -32,6 +32,7 @@
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }

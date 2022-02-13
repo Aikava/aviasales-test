@@ -1,7 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const isDev = process.env.NODE_ENV === 'dev';
 
 module.exports = {
+    mode: isDev ? 'development' : 'production',
     entry: "./src/client/index.jsx",
     output: {
         path: path.resolve(__dirname, "../server/public"),
@@ -48,5 +50,17 @@ module.exports = {
                 viewport: "width=device-width",
             }
         })
-    ]
+    ],
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'public'),
+        },
+        port: 9000,
+        client: {
+            overlay: {
+                warnings: false,
+                errors: true
+            }
+        }
+    }
 }

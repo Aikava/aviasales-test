@@ -1,7 +1,7 @@
 .final {
     width: 100%;
     height: 100%;
-    background:  no-repeat top url("../../assets/man.svg"), linear-gradient(rgba(255,255,255, 0) 70vmin, #D78DA4 30vmin);
+    background: no-repeat top url("../../assets/man.svg"), linear-gradient(rgba(255, 255, 255, 0) 70vmin, #D78DA4 30vmin);
     background-size: contain;
     display: flex;
     align-items: center;

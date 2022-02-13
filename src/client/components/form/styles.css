@@ -62,7 +62,7 @@ fieldset:disabled .item:before {
     color: rgba(255, 255, 255, .5);
 }
 
-.form fieldset:disabled input{
+.form fieldset:disabled input {
     background: rgba(255, 255, 255, .5);
 }
 

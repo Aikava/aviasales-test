@@ -14,7 +14,7 @@
 .button:disabled:hover,
 .button:disabled:active {
     color: #fff;
-    background: rgba(0 ,0, 0, 0);
+    background: rgba(0, 0, 0, 0);
 }
 
 .button:hover {
